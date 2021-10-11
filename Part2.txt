@@ -1,0 +1,79 @@
+[Pointers types - Void pointers - Pointer arithmetic]
+
+POINTERS TYPES
+It is a strong type.
+    You have to use a "pointer variable of a particular type" to store an "address of a particular type of variable"
+                                int * -------------------------------------------------> int 
+                                char * -------------------------------------------------> char 
+
+    Beside the "Store address" function, pointers can also do the "Dereferencing" function 
+                                                            /*Access/Modify the value*/
+    We can also do a "Casting type" for pointer variable types
+    int a = 1025;
+    int *p = &a;
+    char *p0;
+    p0 = (char*)p; // typecasting 
+    // 1025 = 00000000 00000000 00000100 00000001
+        int     byte3   byte2   byte1    byte0
+    int --> 4 bytes
+    char --> 1 byte                                                       
+    Because you have converted (typecasting) from int* pointer to char* pointer. So, when you print *p0  it only show 1 byte: byte0 (00000001)
+    Then its value is 1 
+    
+    Considering about p0+1 and *p0+1
+    char -- > 1 byte
+    let p0 = 12345 --> p0 + 1 = 12346
+    00000000 00000000 00000100 00000001
+                       *p0+1      *p0
+
+    --> the value of p0+1 is 4.
+
+VOID POINTERS - GENERIC POINTERS // White pointers
+Syntax: use keyword - void  
+
+int* p;
+void* p0;
+p0 = p; // we do not need to typecasting p to (void*) p 
+
+White pointer only can store the address
+It cannot:
+    - Dereferencing (void return nothing)
+    - Doing arithmetic things with it
+################################################################################################################################
+
+
+[POINTER TO POINTER]
+//asterisks --> " * "
+//ampersand --> " & "
+
+int x = 5; --> /* 4 bytes */ store value "5" at address "225"
+int *p; --> 4 bytes at address "215"
+
+p = &x;
+*p = 6; // then you change the value of variable x from "5" to "6"
+
+    // and when you need to point to the pointer p
+int **q; // double pointer
+q = &p;
+    // and when you need to pointer to pointer to pointer 
+int ***r; // triple pointer
+r = &q;
+
+REMARK: *(address) == the value which is stored in that address
+
+e.g.
+    
+    int x = 5;
+    int *p;
+    p = &x;
+    cout << p << " " << *p << "\n";
+        = x's addr     = 5      
+    int **q;
+    q = &p;
+    cout << q << " " << *q;
+        = p's addr   = p's value (x's addr)
+    cout << *(*p); //dereferencing the value at address stored 
+            = 6
+ 
+
+################################################################################################################################

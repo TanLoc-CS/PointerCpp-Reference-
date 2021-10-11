@@ -1,0 +1,102 @@
+[POINTERS AS FUNCTION ARGUMENTS - CALL BY REFERENCE]
+
+Application's memory
+------------------
+        
+        
+        HEAP
+
+
+------------------
+
+        STACK
+
+------------------
+    STATIC/GLOBAL
+------------------
+    CODE(TEXT)
+------------------
+
+Each function has a stack frame
+
+void Increment(int x) -->  "called function" and the argument "x" is called formal argument
+{
+    x += 1;
+}
+
+int main() --> "calling function"
+{
+    int x = 10; 
+    Increment(x); // the "x" in the bracket is called "actual argument"
+    cout << x;
+    return 0;
+}
+
+In this scenario, x (actual arg) is mapped to x (formal arg)
+        => this method is "Call by value" or "Pass by value"
+            
+void Increment(int *p) 
+{
+    *px += 1;
+}
+
+int main() 
+{
+    int x = 10; 
+    Increment(&x);
+    cout << x;
+    return 0;
+}
+
+In this scenario, we are passing the addr of "x" (actual arg: &x) to pointer p (formal arg: *p)
+         => this method is "Call by reference" or "Pass by reference"
+
+
+################################################################################################################################
+[POINTERS AND ARRAYS]
+
+Arr[i]
+Element at index i:
+Address - &Arr[i] || (Arr+i)
+Value - Arr[i] || *(Arr+i)
+
+
+################################################################################################################################
+[ARRAYS AS FUNCTION ARGUMENTS]
+
+Computer compiles:
+    --> for the execution of the function call, it use stack session of the memory
+Actually the compile just make a pointer to the address of the actual argument not exactly the argument (just a copy)
+e.g.
+int sumOfElements(int arr[]) -- through compiler --> int sumOfElements(int *arr)
+                                                                        the address of the first element
+
+################################################################################################################################
+[CHARACTER ARRAYS AND POINTER]
+
+|1| How to store strings
+    Size of char array >= number of characters in string + 1
+    e.g.
+    "John"  --> size >= 5
+    we can do like this:
+        char C[20] = "John";
+    but can't do like this:
+        char C[20];
+        C = "John"
+
+    we can also:
+        char C[] = "John" --> the compiler will automatically define the size of C is 5
+
+|2| Arrays and pointers are different types that are used in similar manner
+     char C1[6] = "Hello";      | H | e | l | l | o | \0 |
+                                 200 201 202 203 204 205
+     char *C2;                      
+     C2 = C1;                  | 200 |
+                                 400
+    print C2[1]; //e
+    C2[0] = 'A';    "Hello" --> "Aello"
+    C2[i] is *(C2+i) 
+
+|3| Arrays are always passed to function by reference
+
+################################################################################################################################

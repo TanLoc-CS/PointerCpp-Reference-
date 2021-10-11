@@ -1,0 +1,54 @@
+[Introduction to POINTERs]
+
+DEFINITION
+    Pointers are the variables which store address of others variables;
+
+BASIC SYNTAX
+    Declare a pointer
+        int a = 5; --> an integer variable
+        int *p; --> an integer pointer variable
+        p = a; //error; pointer must point to address only
+        p = &a; //correct; when we put '&' before a variable, it means &[var] is the address of that variable
+        print p;    |
+                    |   both will print the address of the variable a
+        print &a;   |
+
+        print *p // == print a; it's called "dereferencing" which means you call the value of the variable which pointer points to
+################################################################################################################################
+
+
+[Working with POINTERs]
+
+// the pointer points to the address of the variable must have the same data type
+    e.g.
+        int a; // integer
+        int *p0; // pointer to an integer
+        char c; // character
+        char *p1; // pointer to a character
+//Pointer can also pointer to a class/struct;
+   e.g.
+        struct student{
+            int ID;
+            char name[100];
+        }
+
+        student *p;
+        student a;
+        p = &a;
+
+//Pointer arithmetic
+    int a = 5;
+    int *p;
+    p = &a; 
+    Assume that the address of pointer p is 2002
+    Question is "How about (p + 1)?"
+        p+1 is 2006 
+    Why? 
+        when p+1, it means that the address assigned to p has + sizeof(integer)
+        and at p+1 the value is invalid;
+    
+    Generally, when p + n*[sizeof(data_type)]
+    Caution: if we have assigned a variable to p, and that variable has already contained a value --> *p has a value.
+            But p+n probably does not have a variable, so if you call the value at the address you point to (p+n), it 
+            will give you a garbage value. So, must be careful with this.
+################################################################################################################################
